@@ -1,0 +1,52 @@
+tasks = []
+while True:
+    print("\nWhat would you like to do? Here are your options:")
+    print("1. Add a new task")
+    print("2. Show me the to-do list")
+    print("3. Mark a task as done")
+    print("4. Delete a task")
+    print("5. Quit and say goodbye")
+
+    choice = input("\nChoose an option (1-5): ")
+    if choice == "1":
+        new_task = input("\nWhat task would you like to add?: ")
+        tasks.append(new_task)
+        print(f"\n'{new_task}' has been added to your to-do list.")
+    elif choice == "2":
+        if not tasks:
+            print("\nYour to-do list is empty! Nothing to do here.")
+        else:
+            print("\nHere are your tasks:")
+            for i, task in enumerate(tasks, 1):
+                print(f"{i}. {task}")
+    elif choice == "3":
+        if not tasks:
+            print("\nYour to-do list is empty. No tasks to mark as done.")
+        else:
+            print("\nWhich task would you like to mark as done? (Enter the task number)")
+            for i, task in enumerate(tasks, 1):
+                print(f"{i}. {task}")
+            task_done = int(input("\nEnter the task number: "))
+            if 1 <= task_done <= len(tasks):
+                print(f"\nYou marked '{tasks[task_done - 1]}' as done!")
+                tasks.pop(task_done - 1)
+            else:
+                print("\nOops, that's not a valid task number. Try again.")
+    elif choice == "4":
+        if not tasks:
+            print("\nYour to-do list is empty. No tasks to delete.")
+        else:
+            print("\nWhich task would you like to delete? (Enter the task number)")
+            for i, task in enumerate(tasks, 1):
+                print(f"{i}. {task}")
+            task_delete = int(input("\nEnter the task number: "))
+            if 1 <= task_delete <= len(tasks):
+                print(f"\n'{tasks[task_delete - 1]}' has been deleted.")
+                tasks.pop(task_delete - 1)
+            else:
+                print("\nOops, that's not a valid task number. Try again.")
+    elif choice == "5":
+        print("\nGoodbye! Stay productive.")
+        break
+    else:
+        print("\nOops, that's not a valid option. Try again.")
